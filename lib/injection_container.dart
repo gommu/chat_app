@@ -14,7 +14,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Cubit
-  sl.registerFactory(() => ChatsListCubit(getChatsList: sl()));
+  sl.registerLazySingleton(() => ChatsListCubit(getChatsList: sl()));
 
   // Use case
   sl.registerLazySingleton(() => GetChatsList(repository: sl()));

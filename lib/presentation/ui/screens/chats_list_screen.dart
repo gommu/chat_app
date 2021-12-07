@@ -25,21 +25,17 @@ class _ChatListScreenState extends State<ChatListScreen> {
         create: (context) => sl<ChatsListCubit>()..fetchChatsList(),
         child: BlocBuilder<ChatsListCubit, ChatsListState>(
           builder: (context, state) {
-            if (state is ChatsListInitial) {
-              return SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
-                child: const Text('Searching'),
-              );
-            }
+            print(state.runtimeType);
 
-            else if (state is ChatsListError) {
+            if (state is ChatsListInitial) {
+              return const SizedBox(
+                child: Text('Searching'),
+              );
+            } else if (state is ChatsListError) {
               return SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
                 child: Text(state.message),
               );
-            }
-
-            else if (state is ChatsListLoaded) {
+            } else if (state is ChatsListLoaded) {
               return ListView.separated(
                 itemCount: state.chatsList.length,
                 itemBuilder: (context, index) {
@@ -51,14 +47,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
                   endIndent: 15,
                 ),
               );
-            }
-
-            else if (state is ChatsListLoading) {
-              return Center(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: const CircularProgressIndicator(),
-                ),
+            } else if (state is ChatsListLoading) {
+              return const Center(
+                child: CircularProgressIndicator(color: Colors.blue),
               );
             } else {
               return Container();

@@ -15,7 +15,7 @@ class ChatsListRemoteDatasourceImpl implements ChatsListRemoteDatasource {
 
   @override
   Future<List<ChatPreviewModel>> getChatsList() async {
-    final url = Uri.https('chatdemo.free.beeceptor.com', 'chats');
+    final url = Uri.https('f946359e-5644-4bbf-bb27-2208a6561e3b.mock.pstmn.io', 'chats');
     final response = await client.get(
       url,
       headers: {

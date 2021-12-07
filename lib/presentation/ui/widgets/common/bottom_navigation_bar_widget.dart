@@ -10,6 +10,12 @@ class BottomNavigationBarWidget extends StatelessWidget {
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
       currentIndex: 3,
+      onTap: (index) {
+        if (index == 0) {
+          // BlocProvider.of<ChatsListCubit>(context).fetchChatsList();
+          // print(sl<ChatsListCubit>().updateChatsList());
+        }
+      },
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
