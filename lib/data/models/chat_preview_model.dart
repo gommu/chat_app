@@ -2,7 +2,6 @@ import 'package:chat_app/domain/entities/chat_preview.dart';
 
 import 'chat_message_model.dart';
 
-// class ChatPreviewModel extends ChatPreview {
 class ChatPreviewModel {
   final String name;
   final ChatMessageModel lastMessage;

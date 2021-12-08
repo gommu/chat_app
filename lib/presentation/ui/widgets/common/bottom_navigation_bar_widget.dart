@@ -12,7 +12,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
       currentIndex: 3,
       onTap: (index) {
         if (index == 0) {
-          // BlocProvider.of<ChatsListCubit>(context).fetchChatsList();
+          // BlocProvider.of<GeneralChannelBloc>(context).add(ListenChannel());
           // print(sl<ChatsListCubit>().updateChatsList());
         }
       },

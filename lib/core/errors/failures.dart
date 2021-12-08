@@ -10,6 +10,10 @@ class ServerFailure extends Failure {
 
 class CacheFailure extends Failure {
   @override
-  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class WsFailure extends Failure {
+  @override
   List<Object?> get props => throw UnimplementedError();
 }

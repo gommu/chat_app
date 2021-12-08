@@ -13,6 +13,8 @@ class ChatsListTile extends StatefulWidget {
 class _ChatsListTileState extends State<ChatsListTile> {
   @override
   Widget build(BuildContext context) {
+    final unreadMessagesAmount = widget.chatPreview.unreadMessagesAmount;
+    final isUnread = unreadMessagesAmount > 0;
     return ListTile(
       title: Text(widget.chatPreview.name),
       subtitle: Text("${widget.chatPreview.lastMessage.author}: ${widget.chatPreview.lastMessage.message}"),
@@ -20,10 +22,10 @@ class _ChatsListTileState extends State<ChatsListTile> {
         padding: const EdgeInsets.only(top: 8, bottom: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: isUnread ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
           children: [
-            if (widget.chatPreview.unreadMessagesAmount > 0)
-              Text("${widget.chatPreview.unreadMessagesAmount} сообщения"),
+            if (isUnread)
+              Text("$unreadMessagesAmount сообщения"),
             Text(DateFormat('Hm').format(widget.chatPreview.lastMessage.messageDate)),
           ],
         ),

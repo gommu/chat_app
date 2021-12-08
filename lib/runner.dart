@@ -1,4 +1,6 @@
-import 'dart:convert';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_channel/status.dart' as status;
 
 var a = '''
 [
@@ -25,8 +27,17 @@ var a = '''
 ]
 ''';
 
+main() async {
+  var channel = IOWebSocketChannel.connect(Uri.parse(
+      'ws://192.168.200.8:6001/ws/app/app-key/events/?session=session'));
 
-void main() {
-  var chatsJson = json.decode(a);
-  chatsJson.forEach(print);
+  channel.stream.listen(
+    (message) {
+      print('Go');
+      print(message);
+      // channel.sink.close(status.goingAway);
+    },
+    onError: (error) => print(error),
+    onDone: () {},
+  );
 }

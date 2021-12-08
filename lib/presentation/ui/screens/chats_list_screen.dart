@@ -1,5 +1,8 @@
+import 'dart:async';
+
+import 'package:chat_app/domain/repositories/general_channel_repository.dart';
 import 'package:chat_app/injection_container.dart';
-import 'package:chat_app/presentation/cubit/chats_list_cubit.dart';
+import 'package:chat_app/presentation/cubit/chats_list/chats_list_cubit.dart';
 import 'package:chat_app/presentation/ui/widgets/chats_list/chats_list_tile.dart';
 import 'package:chat_app/presentation/ui/widgets/common/bottom_navigation_bar_widget.dart';
 import "package:flutter/material.dart";
@@ -13,6 +16,30 @@ class ChatListScreen extends StatefulWidget {
 }
 
 class _ChatListScreenState extends State<ChatListScreen> {
+  final StreamController streamController = StreamController<dynamic>();
+  final GeneralChannelRepository generalChannelRepository = sl<GeneralChannelRepository>();
+
+  @override
+  void initState() {
+    super.initState();
+    generalChannelRepository.getGeneralChannel().then((value) {
+      value.fold((failure) {
+      }, (success) {
+        streamController.addStream(success.channel.stream);
+        streamController.stream.listen((event) {
+          sl<ChatsListCubit>().updateChatsList();
+        });
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    print('Call dispose');
+    streamController.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
