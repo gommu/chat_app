@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 class ChatsListTile extends StatefulWidget {
   final ChatPreview chatPreview;
+
   const ChatsListTile(this.chatPreview, {Key? key}) : super(key: key);
 
   @override
@@ -16,21 +17,53 @@ class _ChatsListTileState extends State<ChatsListTile> {
     final unreadMessagesAmount = widget.chatPreview.unreadMessagesAmount;
     final isUnread = unreadMessagesAmount > 0;
     return ListTile(
-      title: Text(widget.chatPreview.name),
-      subtitle: Text("${widget.chatPreview.lastMessage.author}: ${widget.chatPreview.lastMessage.message}"),
+      onTap: () {
+        print('ListTile tap');
+      },
+      title: Row(
+        children: [
+          if (isUnread)
+            _buildUnreadMessageCircle(),
+          Text(widget.chatPreview.name),
+        ],
+      ),
+      subtitle: Text(
+          "${widget.chatPreview.lastMessage.author}: ${widget.chatPreview.lastMessage.message}"),
       trailing: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: isUnread ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
+          mainAxisAlignment:
+              isUnread ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
           children: [
             if (isUnread)
-              Text("$unreadMessagesAmount сообщения"),
-            Text(DateFormat('Hm').format(widget.chatPreview.lastMessage.messageDate)),
+              Text(
+                "$unreadMessagesAmount сообщения",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: Colors.blue),
+              ),
+            Text(DateFormat('Hm')
+                .format(widget.chatPreview.lastMessage.messageDate)),
           ],
         ),
       ),
       dense: false,
+    );
+  }
+
+  Widget _buildUnreadMessageCircle() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: Container(
+        width: 6.0,
+        height: 6.0,
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+          shape: BoxShape.circle,
+        ),
+      ),
     );
   }
 }

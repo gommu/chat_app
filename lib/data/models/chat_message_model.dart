@@ -6,12 +6,14 @@ class ChatMessageModel {
   final String author;
   final DateTime messageDate;
   final bool isRead;
+  final bool isMine;
 
   const ChatMessageModel({
     required this.message,
     required this.author,
     required this.messageDate,
     required this.isRead,
+    required this.isMine,
   });
 
   factory ChatMessageModel.fromJson(Map<String, dynamic> json) {
@@ -21,6 +23,7 @@ class ChatMessageModel {
       messageDate: DateTime.now(),
       // messageDate: json['messageDate'],
       isRead: json['isRead'],
+      isMine: json['isMine'],
     );
   }
 
@@ -30,6 +33,7 @@ class ChatMessageModel {
       'author': author,
       'messageDate': messageDate,
       'isRead': isRead,
+      'isMine': isMine,
     };
   }
 }
@@ -41,6 +45,7 @@ extension ChatMessageMapper on ChatMessageModel {
       author: author,
       messageDate: messageDate,
       isRead: isRead,
+      isMine: isMine,
     );
   }
 }
