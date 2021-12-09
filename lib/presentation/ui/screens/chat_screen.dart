@@ -192,8 +192,8 @@ class ChatBubble extends CustomPainter {
     required this.alignment,
   });
 
-  var _radius = 8.0;
-  var _x = 10.0;
+  final radius = 8.0;
+  final x = 10.0;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -204,25 +204,25 @@ class ChatBubble extends CustomPainter {
             0,
             size.width - 8,
             size.height,
-            bottomLeft: Radius.circular(_radius),
-            topRight: Radius.circular(_radius),
-            topLeft: Radius.circular(_radius),
+            bottomLeft: Radius.circular(radius),
+            topRight: Radius.circular(radius),
+            topLeft: Radius.circular(radius),
           ),
           Paint()
-            ..color = this.color
+            ..color = color
             ..style = PaintingStyle.fill);
-      var path = new Path();
-      path.moveTo(size.width - _x, size.height - 10);
-      path.lineTo(size.width - _x, size.height);
+      var path = Path();
+      path.moveTo(size.width - x, size.height - 10);
+      path.lineTo(size.width - x, size.height);
       path.lineTo(size.width, size.height);
       canvas.clipPath(path);
       canvas.drawRRect(
           RRect.fromLTRBAndCorners(
-            size.width - _x,
+            size.width - x,
             0.0,
             size.width,
             size.height,
-            topRight: Radius.circular(_radius),
+            topRight: Radius.circular(radius),
           ),
           Paint()
             ..color = this.color
@@ -230,29 +230,29 @@ class ChatBubble extends CustomPainter {
     } else {
       canvas.drawRRect(
           RRect.fromLTRBAndCorners(
-            _x,
+            x,
             0,
             size.width,
             size.height,
-            bottomRight: Radius.circular(_radius),
-            topRight: Radius.circular(_radius),
-            topLeft: Radius.circular(_radius),
+            bottomRight: Radius.circular(radius),
+            topRight: Radius.circular(radius),
+            topLeft: Radius.circular(radius),
           ),
           Paint()
             ..color = color
             ..style = PaintingStyle.fill);
       var path = Path();
       path.moveTo(0, size.height);
-      path.lineTo(_x, size.height);
-      path.lineTo(_x, size.height - 10);
+      path.lineTo(x, size.height);
+      path.lineTo(x, size.height - 10);
       canvas.clipPath(path);
       canvas.drawRRect(
           RRect.fromLTRBAndCorners(
             0,
             0.0,
-            _x,
+            x,
             size.height,
-            topRight: Radius.circular(_radius),
+            topRight: Radius.circular(radius),
           ),
           Paint()
             ..color = color
