@@ -10,7 +10,7 @@ class GetChatsList implements UseCase<List<ChatPreview>, NoParams> {
   GetChatsList({required this.repository});
 
   @override
-  Future<Either<Failure, List<ChatPreview>>> call() async {
+  Future<Either<Failure, List<ChatPreview>>> call(NoParams params) async {
     return await repository.getChatsList();
   }
 }

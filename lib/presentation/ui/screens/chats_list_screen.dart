@@ -52,8 +52,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
         create: (context) => sl<ChatsListCubit>()..fetchChatsList(),
         child: BlocBuilder<ChatsListCubit, ChatsListState>(
           builder: (context, state) {
-            print(state.runtimeType);
-
             if (state is ChatsListInitial) {
               return const SizedBox(
                 child: Text('Searching'),

@@ -3,10 +3,15 @@ import 'package:equatable/equatable.dart';
 
 class Chat extends Equatable {
   final String name;
+  final String channelUrl;
   final List<ChatMessage> messageHistory;
 
-  const Chat(this.name, this.messageHistory);
+  const Chat({
+    required this.name,
+    required this.messageHistory,
+    required this.channelUrl,
+  });
 
   @override
-  List<Object> get props => [name, messageHistory];
+  List<Object> get props => [name, messageHistory, channelUrl];
 }

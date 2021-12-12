@@ -1,4 +1,6 @@
 import 'package:chat_app/domain/entities/chat_preview.dart';
+import 'package:chat_app/presentation/ui/helpers/chat_arguments.dart';
+import 'package:chat_app/presentation/ui/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -18,12 +20,18 @@ class _ChatsListTileState extends State<ChatsListTile> {
     final isUnread = unreadMessagesAmount > 0;
     return ListTile(
       onTap: () {
-        print('ListTile tap');
+        Navigator.pushNamed(
+          context,
+          ChatScreen.routeName,
+          arguments: ChatArguments(
+            widget.chatPreview.id,
+            widget.chatPreview.name,
+          ),
+        );
       },
       title: Row(
         children: [
-          if (isUnread)
-            _buildUnreadMessageCircle(),
+          if (isUnread) _buildUnreadMessageCircle(),
           Text(widget.chatPreview.name),
         ],
       ),

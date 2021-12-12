@@ -10,7 +10,7 @@ class GetGeneralChannel implements UseCase<GeneralChannel, NoParams> {
   GetGeneralChannel({required this.repository});
 
   @override
-  Future<Either<Failure, GeneralChannel>> call() async {
+  Future<Either<Failure, GeneralChannel>> call(NoParams params) async {
     return await repository.getGeneralChannel();
   }
 }

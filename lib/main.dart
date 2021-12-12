@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
       title: 'Chat Demo',
       theme: lightTheme,
       routes: {
-        // '/': (context) => const ChatListScreen(),
-        '/': (context) => const ChatScreen(),
+        '/': (context) => const ChatListScreen(),
+        ChatScreen.routeName: (context) => ChatScreen(),
+        // '/': (context) => const ChatScreen(),
         // '/': (context) => const MyCustomForm(),
         // '/details': (context) => const ChatScreen(),
       },

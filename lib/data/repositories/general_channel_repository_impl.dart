@@ -5,6 +5,7 @@ import 'package:chat_app/domain/entities/general_channel.dart';
 import 'package:chat_app/domain/repositories/general_channel_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:chat_app/core/network/network_info.dart';
+import 'package:chat_app/data/models/general_channel_model.dart';
 
 class GeneralChannelRepositoryImpl implements GeneralChannelRepository {
   final GeneralChannelWsDatasource generalChannelWsDatasource;
@@ -21,7 +22,7 @@ class GeneralChannelRepositoryImpl implements GeneralChannelRepository {
     if (await networkInfo.isConnected) {
       try {
         final generalChannel = generalChannelWsDatasource.getGeneralChannel();
-        return Right(generalChannel);
+        return Right(generalChannel.toModel());
       } on WsException {
         return Left(WsFailure());
       }
