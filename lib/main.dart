@@ -4,7 +4,6 @@ import 'package:chat_app/presentation/ui/screens/chats_list_screen.dart';
 import 'package:chat_app/presentation/ui/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'presentation/ui/screens/test_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +23,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const ChatListScreen(),
         ChatScreen.routeName: (context) => ChatScreen(),
-        // '/': (context) => const ChatScreen(),
-        // '/': (context) => const MyCustomForm(),
-        // '/details': (context) => const ChatScreen(),
       },
     );
   }

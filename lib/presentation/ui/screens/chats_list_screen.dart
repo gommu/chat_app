@@ -35,7 +35,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
 
   @override
   void dispose() {
-    print('Call dispose');
     streamController.close();
     super.dispose();
   }

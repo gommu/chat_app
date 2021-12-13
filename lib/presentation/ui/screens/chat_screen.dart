@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:chat_app/domain/entities/chat.dart';
-import 'package:chat_app/domain/repositories/chat_channel_repository.dart';
 import 'package:chat_app/presentation/cubit/chat/chat_cubit.dart';
 import 'package:chat_app/presentation/ui/helpers/chat_arguments.dart';
 import 'package:chat_app/presentation/ui/widgets/chat/message_bubble.dart';
@@ -29,7 +26,6 @@ class _ChatScreenState extends State<ChatScreen> {
     final args = ModalRoute.of(context)!.settings.arguments as ChatArguments;
 
     return GestureDetector(
-      // onTap: () => FocusScope.of(context).unfocus(),
       onTap: () {},
       child: Scaffold(
         appBar: AppBar(
